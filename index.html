@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Personal Expense Tracker</h1>
+
+    <!-- Expense Form -->
+    <form method="POST" class="expense-form">
+        <input type="date" name="date" required>
+        <input type="text" name="category" placeholder="Category" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <!-- Summary -->
+    <div class="summary">
+        <p><strong>Total Expense:</strong> ₹{{ total }}</p>
+        {% if highest %}
+        <p><strong>Highest Expense:</strong> ₹{{ highest.amount }} ({{ highest.category }})</p>
+        {% endif %}
+    </div>
+
+    <!-- Expense Table -->
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount (₹)</th>
+        </tr>
+
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.date }}</td>
+            <td>{{ expense.category }}</td>
+            <td>{{ expense.amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
